@@ -1,0 +1,18 @@
+Tested on:
+Windows 7 or 2008/R2
+IIS7+
+local SQL Server 2008 R2
+
+Pre-requisites:
+1. PowerShell installed/available
+2. When executing in PowerShell console, make sure to load all system modules
+3. Change execution policy in PowerShell with: Set-ExecutionPolicy unrestricted
+4. A network repository with Sitecore distributives:
+	- files should be named using the following convention: <majorversion>x<revision>.zip
+		for example: 641x110720.zip, 650x111123.zip, etc.
+	- there should be versions.config file in the repository describing all versions available.
+		see sample file for more info.
+
+5. Adjust the settings in install.config accordingly.
+
+
