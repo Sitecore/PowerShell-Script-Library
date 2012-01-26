@@ -1,18 +1,42 @@
-Tested on:
-Windows 7 or 2008/R2
+Platform:
+Windows 7 and Server 2008 R2
 IIS7+
-local SQL Server 2008 R2
+Local SQL Server 2008 R2
 
-Pre-requisites:
+PowerShell Setup:
 1. PowerShell installed/available
 2. When executing in PowerShell console, make sure to load all system modules
 3. Change execution policy in PowerShell with: Set-ExecutionPolicy unrestricted
-4. A network repository with Sitecore distributives:
+
+IMPORTANT:
+
+Open install.config.
+You will need to adjust the settings in install.config accordingly.
+
+1. DefaultRuntimeVersion is set to 4.0, that means you have to have .NET 4 installed.
+2. AppPoolIdentity - defaults to NetworkService.
+2. InetpubLocation - target location with the Sitecore installation. Should end with "\", ex: "C:\inetpub\wwwroot\"
+   The account specified in 'AppPoolIdentity' should have "modify" access over this directory.
+   Also, if you have SQL Server service running under another account, make sure that account has "modify" permissions also.
+
+3. TempFolder - make sure it exists locally.
+   
+4. BaseStorageUrl - specifies the location with 'versions.config' and Sitecore distributives.
+   This could either be a CDN, network share or a local file path.
+
+   IMPORTANT:
 	- files should be named using the following convention: <majorversion>x<revision>.zip
-		for example: 641x110720.zip, 650x111123.zip, etc.
+  	  for example: 641x110720.zip, 650x111123.zip, etc.
+	  These ZIP files should have "data", "Databases" and "Website" folders in the root.
+	  The ZIP distributives from SDN have slightly different structure, so this should be fixed.
+	  See distributive_structure.png
+	  
 	- there should be versions.config file in the repository describing all versions available.
-		see sample file for more info.
-
-5. Adjust the settings in install.config accordingly.
-
-
+	  see sample file for more info.
+	  
+5. Other settings are obvious:
+	- LicenseFilePath
+	- SQLServerName
+	- SQLUserName
+	- SQLPassword
+	- SQLRuntimeUserName
